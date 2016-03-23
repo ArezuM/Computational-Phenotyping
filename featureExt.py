@@ -7,20 +7,15 @@ import sys
 import re
 import csv
 import os
-
 from string import punctuation
 from os.path import isfile, join
 from string import punctuation
 
-
 def featureExt(path,typeIn,output):
 
 	c1 = csv.writer(open(output, "wt"))
-	
 	c1.writerow(["ID","UtrNo","StatementNo","ExclamationNo","QuestionsNo","AbondanedUtr","OneWordUtr","UtrWithMazes","UtrWithPauses","UtrWithOmissions","Total completed words","MLU in words","Number of words", "Number of Mazes", "Number of Maze words", "Maze words Percentage","Words rate", "Within_Utr Pauses","Average Mazes per Utterance", "Average Word per Mazes", "RevisionNo","Revision_partword", "Revision_word", "Revision_phrase", "RepetitionNo", "Repetition_partword", "Repetition_word", "Repetition_phrase","FilledPauses", "Dysfluency","UL0","UL1","UL2","UL3","UL4","UL5","UL6","UL7","UL8","UL9","UL10","UL11","UL12","UL13","UL14","UL15+", "PUMUL0","PUMUL1","PUMUL2","PUMUL3","PUMUL4","PUMUL5","PUMUL6","PUMUL7","PUMUL8","PUMUL9","PUMUL10","PUMUL11","PUMUL12","PUMUL13","PUMUL14","PUMUL15+", "NMUL0","NMUL1","NMUL2","NMUL3","NMUL4","NMUL5","NMUL6","NMUL7","NMUL8","NMUL9","NMUL10","NMUL11","NMUL12","NMUL13","NMUL14","NMUL15+", "NMML0","NMML1","NMML2","NMML3","NMML4","NMML5","NMML6","NMML7","NMML8","NMML9","NMML10","NMML11","NMML12","NMML13","NMML14","NMML15+", "NUNM0","NUNM1","NUNM2","NUNM3","NUNM4","NUNM5","NUNM6+","Label"
 	])
-	
-	
 	# read .SLT files from input directory
 	Name="";
 	for filename in os.listdir(path):
@@ -352,9 +347,7 @@ def featureExt(path,typeIn,output):
 	        	            l_dist[wl]=l_dist[wl]+1;		
 		                 else:	
 	                	    l_dist[15]=l_dist[15]+1;					
-	            	              
-	                                
-	        
+  
 	      if utrL==1:
 	          OneWordUtr+=1;	# one word utterances		
 	
@@ -364,11 +357,9 @@ def featureExt(path,typeIn,output):
 	      
 	      # write in output file               
 	    c1.writerow([ID,UtrNo,StatementNo,ExclamationNo,QuestionsNo,AbondanedUtr,OneWordUtr,UtrWithMazes,UtrWithPauses,UtrWithOmissions, wordNo,wordNo/UtrNo,wordNo2, MazeNo,N_ml, N_ml/wordNo2,wordNo2/5, UtrWithPauses, MazeNo/UtrNo, N_ml/max(MazeNo, 0.00000001),RevisionNo,Revision_partword, Revision_word, Revision_phrase, RepetitionNo, Repetition_partword, Repetition_word, Repetition_phrase, FilledPauses,RepetitionNo+RevisionNo+AbondanedUtr]+dist+ ld+m_dist+ml_dist+ um_dist+[label])
-	
-	  
-	
+
 	f.close();
-	
+####################################################################	
 def main(inputDir,inputType, output):
 	
 	featureExt(inputDir,inputType, output)
